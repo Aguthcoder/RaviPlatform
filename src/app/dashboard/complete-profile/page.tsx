@@ -7,7 +7,6 @@ import { useAppContext } from "@/context/AppContext";
 import Link from "next/link";
 import { CheckCircle, ArrowLeft, ArrowRight } from "lucide-react";
 
-// کامپوننت جداگانه برای استفاده از useSearchParams
 function CompleteProfileContent() {
   const searchParams = useSearchParams();
   const { state, dispatch } = useAppContext();
@@ -88,11 +87,7 @@ function CompleteProfileContent() {
         <div className="flex items-center gap-3 mb-6">
           <span className="w-2 h-8 bg-orange-500 rounded-full inline-block"></span>
           <h3 className="font-black text-xl text-slate-800">
-            تست روانشناسی تطبیق
-          </h3>
-        </div>
-
-        {!testCompleted ? (
+            تست روانشناسی تط‌نشین!testCompleted ? (
           <div>
             <p className="text-slate-600 mb-6 text-sm leading-relaxed">
               برای یافتن بهترین هم‌نشین، باید تست روانشناسی را تکمیل کنید. این
@@ -140,7 +135,6 @@ function CompleteProfileContent() {
   );
 }
 
-// کامپوننت اصلی با Suspense
 export default function CompleteProfilePage() {
   return (
     <Suspense fallback={<div className="text-center py-10">در حال بارگذاری...</div>}>
