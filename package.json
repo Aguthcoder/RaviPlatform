@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+     "build": "next build",
+    "cf-build": "npm install --legacy-peer-deps && next build",
     "start": "next start",
-    "lint": "next lint",
-    "cf-build": "next build",
-    "cf-deploy": "npm run cf-build && wrangler pages deploy .vercel/output/static"
+    "lint": "next lint"
+ 
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
