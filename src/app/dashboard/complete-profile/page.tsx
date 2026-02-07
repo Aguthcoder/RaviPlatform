@@ -26,14 +26,14 @@ function CompleteProfileContent() {
 
   const handleSaveProfile = () => {
     if (selectedCity) {
-      dispatch({ type: "SET_USER_CITY", payload: selectedCity });
+      dispatch({ type: "SET_CITY", payload: selectedCity });
     }
-    dispatch({ type: "SET_PROFILE_COMPLETE", payload: true });
+    dispatch({ type: "COMPLETE_PROFILE", payload: true });
   };
 
   const handleTestCompletion = () => {
     setTestCompleted(true);
-    dispatch({ type: "SET_TEST_TAKEN", payload: true });
+    dispatch({ type: "TAKE_TEST", payload: true });
   };
 
   const isProfileReady = selectedCity && testCompleted;
