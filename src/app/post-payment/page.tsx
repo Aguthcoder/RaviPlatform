@@ -12,7 +12,10 @@ export default function PostPaymentPage() {
   useEffect(() => {
     const status = searchParams.get("status");
     if (status === "success") {
-      // dispatch({ type: "SET_PAYMENT_SUCCESS", payload: true }); // این خط باعث خطا می‌شود
+      // 🔴 خط 17 مشکل دارد - باید یا حذف شود یا context به‌روزرسانی شود
+      // dispatch({ type: "SET_PAYMENT_SUCCESS", payload: true }); // حذف یا اصلاح
+      
+      // ✅ بهتر است ابتدا context را چک کنید یا مستقیماً هدایت کنید
       setTimeout(() => {
         router.push("/payment-success");
       }, 1000);
