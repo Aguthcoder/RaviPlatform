@@ -39,10 +39,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   // فعال کردن compression برای بهبود performance
-  compress: true,
-  // تنظیمات برای استاتیک
-  trailingSlash: false,
-  
+ compress: true,
+  swcMinify: true,
+  reactStrictMode: true,
 }
 
 module.exports = nextConfig
