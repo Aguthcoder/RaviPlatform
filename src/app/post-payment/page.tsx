@@ -35,6 +35,6 @@ export default function PostPaymentPage() {
   return (
     <Suspense fallback={<div className="text-center py-10">در حال بارگذاری...</div>}>
       <PostPaymentContent />
-    </Suspense>
+    </Suspense> 
   );
 }
