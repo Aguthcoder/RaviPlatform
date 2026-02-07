@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { useAppContext } from "@/context/AppContext";
 import { useRouter } from "next/navigation";
 
-// کامپوننت جداگانه برای استفاده از useSearchParams
 function PostPaymentContent() {
   const searchParams = useSearchParams();
   const { dispatch } = useAppContext();
@@ -32,7 +31,6 @@ function PostPaymentContent() {
   );
 }
 
-// کامپوننت اصلی با Suspense
 export default function PostPaymentPage() {
   return (
     <Suspense fallback={<div className="text-center py-10">در حال بارگذاری...</div>}>
