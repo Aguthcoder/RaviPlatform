@@ -1,36 +1,173 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎯 راوی - پلتفرم هوشمند برگزاری رویداد و آشنایی
 
-## Getting Started
+پلتفرم راوی با استفاده از الگوریتم‌های هوش مصنوعی و تست‌های روان‌شناسی، افراد را با بهترین هم‌نشین‌های خود متصل می‌کند.
 
-First, run the development server:
+## ✨ ویژگی‌ها
 
-```bash
+- 🧠 **تست شخصیت‌شناسی علمی** - شناسایی دقیق تیپ شخصیتی
+- 🤖 **الگوریتم هوش مصنوعی** - پیشنهاد بهترین تطابق‌ها
+- 📅 **رویدادهای متنوع** - حضوری و آنلاین
+- 📱 **طراحی ریسپانسیو** - تجربه عالی در موبایل و دسکتاپ
+- 💾 **ذخیره‌سازی محلی** - حفظ اطلاعات پس از رفرش
+- 🎨 **طراحی مدرن** - استفاده از Tailwind CSS و انیمیشن‌های روان
+
+## 🚀 شروع سریع
+
+### پیش‌نیازها
+
+- Node.js 18+ 
+- npm یا yarn
+
+### نصب
+
+\`\`\`bash
+# کلون کردن پروژه
+git clone https://github.com/your-username/raavi-platform.git
+
+# نصب وابستگی‌ها
+cd raavi-platform
+npm install
+
+# اجرای سرور توسعه
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+پروژه روی `http://localhost:3000` در دسترس خواهد بود.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 ساختار پروژه
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\`\`\`
+raavi-platform/
+├── src/
+│   ├── app/                    # صفحات Next.js
+│   │   ├── (auth)/            # صفحات احراز هویت
+│   │   ├── about/             # درباره ما
+│   │   ├── dashboard/         # داشبورد کاربری
+│   │   ├── events/            # لیست و جزئیات رویدادها
+│   │   ├── page.tsx           # صفحه اصلی
+│   │   └── layout.tsx         # لایه اصلی
+│   ├── components/            # کامپوننت‌های قابل استفاده مجدد
+│   │   ├── landing/           # کامپوننت‌های صفحه اصلی
+│   │   ├── ui/                # کامپوننت‌های رابط کاربری
+│   │   └── ...
+│   ├── context/               # Context API
+│   ├── lib/                   # توابع کمکی و داده‌ها
+│   └── ...
+├── public/                    # فایل‌های استاتیک
+├── package.json
+└── README.md
+\`\`\`
 
-## Learn More
+## 🎨 تکنولوژی‌ها
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **State Management**: Context API + localStorage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📱 ریسپانسیو
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+پلتفرم راوی کاملاً ریسپانسیو است و برای تمام دستگاه‌ها بهینه‌سازی شده:
 
-## Deploy on Vercel
+- 📱 موبایل (< 768px)
+- 💻 تبلت (768px - 1024px)
+- 🖥️ دسکتاپ (> 1024px)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔑 ویژگی‌های کلیدی
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### ذخیره‌سازی داده‌ها
+
+اطلاعات کاربر به صورت خودکار در `localStorage` ذخیره می‌شود:
+
+\`\`\`typescript
+// Context حفظ می‌شود حتی پس از رفرش
+{
+  isLoggedIn: boolean,
+  isProfileComplete: boolean,
+  isTestTaken: boolean,
+  userCity: string | null
+}
+\`\`\`
+
+### کامپوننت‌های جداگانه
+
+صفحه اصلی به کامپوننت‌های مستقل تقسیم شده:
+- Hero
+- Features
+- Pricing
+- Testimonials
+- FAQ
+- Header
+- Footer
+
+### نوار ناوبری موبایل
+
+نوار ابزار شناور در موبایل با:
+- بک‌گراند سورمه‌ای
+- هایلایت نارنجی برای صفحه فعال
+- انیمیشن روان
+
+## 🎯 صفحات اصلی
+
+1. **خانه** (`/`) - معرفی پلتفرم
+2. **درباره ما** (`/about`) - داستان و ارزش‌های راوی
+3. **رویدادها** (`/events`) - لیست رویدادها
+4. **جزئیات رویداد** (`/events/[id]/booking`) - اطلاعات کامل و رزرو
+5. **داشبورد** (`/dashboard`) - پنل کاربری
+6. **پروفایل** (`/dashboard/profile`) - مدیریت اطلاعات
+
+## 🔧 تنظیمات
+
+### رنگ‌بندی اصلی
+
+- **Primary**: نارنجی (#f97316)
+- **Secondary**: سورمه‌ای (#1e293b)
+- **Background**: سفید و خاکستری روشن
+
+### فونت
+
+استفاده از فونت وزیرمتن برای پشتیبانی کامل از فارسی
+
+## 📦 دیپلوی
+
+### GitHub Pages
+
+\`\`\`bash
+npm run build
+npm run export
+\`\`\`
+
+### Vercel
+
+پروژه آماده دیپلوی روی Vercel است:
+
+\`\`\`bash
+vercel
+\`\`\`
+
+## 🤝 مشارکت
+
+برای مشارکت در پروژه:
+
+1. Fork کنید
+2. برنچ جدید بسازید (`git checkout -b feature/amazing-feature`)
+3. تغییرات را commit کنید (`git commit -m 'Add amazing feature'`)
+4. Push کنید (`git push origin feature/amazing-feature`)
+5. Pull Request باز کنید
+
+## 📄 لایسنس
+
+این پروژه تحت لایسنس MIT منتشر شده است.
+
+## 📞 تماس
+
+برای سوالات و پیشنهادات:
+- ایمیل: info@raavi.ir
+- تلفن: ۰۲۱-۸۸۸۸۸۸۸۸
+
+---
+
+ساخته شده با ❤️ توسط تیم راوی
+\`\`\`

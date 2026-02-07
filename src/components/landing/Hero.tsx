@@ -4,7 +4,6 @@ import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import CountdownTimer from "../CountdownTimer";
 import Reveal from "../Reveal";
-import { useState } from "react";
 
 interface HeroProps {
   ctaHref: string;
@@ -12,24 +11,6 @@ interface HeroProps {
 
 export default function Hero({ ctaHref }: HeroProps) {
   const nextEventId = "next";
-  const [imageError, setImageError] = useState(false);
-
-  // تصاویر با موضوع گردهمایی، ارتباطات و روابط اجتماعی
-  const heroImages = [
-    "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200&q=80", // گروه دوستان در کافه
-    "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1200&q=80", // جلسه گروهی
-    "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=1200&q=80", // تیم در حال کار
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const handleImageError = () => {
-    if (currentImageIndex < heroImages.length - 1) {
-      setCurrentImageIndex(currentImageIndex + 1);
-    } else {
-      setImageError(true);
-    }
-  };
 
   return (
     <Reveal
@@ -89,23 +70,17 @@ export default function Hero({ ctaHref }: HeroProps) {
         <Reveal direction="left" className="order-1 lg:order-2">
           <div className="relative">
             <div className="aspect-square md:aspect-auto md:h-[500px] lg:h-[600px] rounded-[30px] md:rounded-[40px] overflow-hidden shadow-2xl shadow-orange-200/30 border-4 border-white/90 backdrop-blur-sm">
-              {!imageError ? (
-                <img
-                  src={heroImages[currentImageIndex]}
-                  alt="گروهی از افراد در حال گفتگو و تعامل در یک محیط دوستانه و حرفه‌ای"
-                  className="w-full h-full object-cover"
-                  onError={handleImageError}
-                  loading="eager"
-                />
-              ) : (
-                // Fallback gradient if all images fail
-                <div className="w-full h-full bg-gradient-to-br from-orange-400 via-orange-300 to-yellow-300 flex items-center justify-center">
-                  <div className="text-center text-white p-8">
-                    <div className="text-6xl mb-4">🤝</div>
-                    <h3 className="text-2xl font-bold">هم‌نشین‌یابی هوشمند</h3>
-                  </div>
-                </div>
-              )}
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1000&q=80"
+                alt="گروهی از افراد در حال گفتگو و تعامل در یک محیط دوستانه"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src =
+                    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1000&q=80";
+                  e.currentTarget.alt =
+                    "تصویر جایگزین: تیمی در حال همکاری و گفتگو";
+                }}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 via-transparent to-transparent" />
             </div>
 
@@ -129,7 +104,7 @@ export default function Hero({ ctaHref }: HeroProps) {
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
-                      className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-gradient-to-br from-orange-300 to-orange-500 border-2 border-white"
+                      className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-slate-200 border-2 border-white"
                     />
                   ))}
                 </div>
@@ -142,7 +117,7 @@ export default function Hero({ ctaHref }: HeroProps) {
         </Reveal>
       </div>
 
-      {/* Countdown Timer */}
+      {/* Countdown Timer - با تاریخ صحیح */}
       <div className="container mx-auto mt-12 md:mt-20">
         <div className="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-[24px] md:rounded-[32px] p-6 md:p-8 border border-slate-200/80 shadow-xl shadow-slate-200/30">
           <div className="text-center mb-6 md:mb-8">
@@ -153,7 +128,7 @@ export default function Hero({ ctaHref }: HeroProps) {
               گردهمایی شب شناخت و دوستی
             </h2>
             <p className="text-slate-500 mt-2 text-xs md:text-sm">
-              جمعه، ۱۵ اسفند | کافه رستوران پارک‌ساید، تهران
+              پنج‌شنبه، ۱۵ اسفند ۱۴۰۴ | کافه رستوران پارک‌ساید، تهران
             </p>
           </div>
           <CountdownTimer target="2026-03-06T19:00:00" />

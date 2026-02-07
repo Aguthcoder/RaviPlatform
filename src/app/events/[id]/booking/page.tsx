@@ -19,6 +19,13 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 
+// تعریف interface برای Schedule Item
+interface ScheduleItem {
+  time: string;
+  title: string;
+  desc: string;
+}
+
 export default function BookingPage() {
   const { state } = useAppContext();
   const router = useRouter();
@@ -39,7 +46,6 @@ export default function BookingPage() {
     }
   };
 
-  // تابع برای ساخت gradient بر اساس category
   const getCategoryGradient = (category: string) => {
     const gradients: { [key: string]: string } = {
       "رویداد اجتماعی": "from-blue-400 via-purple-400 to-purple-600",
@@ -77,7 +83,7 @@ export default function BookingPage() {
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 relative">
         {/* Main Content */}
         <div className="lg:col-span-8 space-y-6 md:space-y-10 order-2 lg:order-1">
-          {/* Header - نمایش در موبایل */}
+          {/* Header - Mobile */}
           <div className="space-y-4 lg:hidden">
             <div className="flex items-center gap-2 text-xs font-bold flex-wrap">
               <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full">
@@ -124,7 +130,7 @@ export default function BookingPage() {
             </div>
           </div>
 
-          {/* Header - نمایش در دسکتاپ */}
+          {/* Header - Desktop */}
           <div className="space-y-4 hidden lg:block">
             <div className="flex items-center gap-3 text-xs font-bold">
               <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full">
@@ -257,7 +263,7 @@ export default function BookingPage() {
             </div>
           </section>
 
-          {/* Schedule Section */}
+          {/* Schedule Section - با Interface صحیح */}
           <section className="bg-white p-5 md:p-8 rounded-2xl md:rounded-[32px] border border-slate-100 shadow-sm">
             <div className="flex items-center gap-2 mb-6 md:mb-8 text-slate-900 font-bold text-base md:text-xl">
               <div className="w-1 h-5 md:h-6 bg-orange-500 rounded-full"></div>
@@ -265,7 +271,7 @@ export default function BookingPage() {
             </div>
 
             <div className="relative border-r-2 border-slate-100 mr-2 md:mr-3 space-y-6 md:space-y-10">
-              {event.schedule.map((item: any, idx: number) => (
+              {event.schedule.map((item: ScheduleItem, idx: number) => (
                 <div key={idx} className="relative pr-6 md:pr-8 group">
                   <div className="absolute -right-[7px] md:-right-[9px] top-1 w-3 h-3 md:w-4 md:h-4 rounded-full border-2 border-white bg-orange-200 group-hover:bg-orange-500 transition-colors shadow-sm"></div>
 
@@ -369,7 +375,7 @@ export default function BookingPage() {
               </p>
             </div>
 
-            {/* Map Placeholder - فقط در دسکتاپ */}
+            {/* Map Placeholder */}
             <div className="hidden lg:block bg-white p-4 rounded-[32px] shadow-sm border border-slate-100">
               <div className="flex items-center gap-2 mb-4 px-2">
                 <MapPin className="text-orange-500" size={20} />
