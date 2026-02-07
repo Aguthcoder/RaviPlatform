@@ -10,7 +10,11 @@ import {
   Zap,
 } from "lucide-react";
 
-export default function Sidebar() {
+interface SidebarProps {
+  isMobile?: boolean;
+}
+
+export default function Sidebar({ isMobile = false }: SidebarProps) {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
@@ -22,7 +26,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-72 bg-[#111827] text-white hidden md:flex flex-col h-full shrink-0 border-l border-slate-800 overflow-y-auto font-sans">
+    <aside className={`w-72 bg-[#111827] text-white ${isMobile ? 'flex' : 'hidden md:flex'} flex-col h-full shrink-0 border-l border-slate-800 overflow-y-auto font-sans`}>
       {/* هدر سایدبار با لینک به صفحه اصلی */}
       <div className="p-6 border-b border-slate-800">
         <Link href="/" className="flex items-center gap-3 group">
