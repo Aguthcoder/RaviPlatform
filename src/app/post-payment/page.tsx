@@ -1,40 +1,35 @@
 "use client";
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { useAppContext } from "@/context/AppContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
-function PostPaymentContent() {
-  const searchParams = useSearchParams();
+export default function PostPaymentPage() {
   const { dispatch } = useAppContext();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const status = searchParams.get("status");
     if (status === "success") {
-      dispatch({ type: "SET_PAYMENT_SUCCESS", payload: true });
+      // dispatch({ type: "SET_PAYMENT_SUCCESS", payload: true }); // این خط باعث خطا می‌شود
       setTimeout(() => {
         router.push("/payment-success");
       }, 1000);
+    } else {
+      router.push("/payment-failed");
     }
-  }, [searchParams, dispatch, router]);
+  }, [searchParams, router, dispatch]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center">
       <div className="text-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-orange-500 mx-auto mb-4"></div>
-        <p className="text-slate-600 font-bold">در حال پردازش پرداخت...</p>
+        <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+        <h1 className="text-2xl font-bold text-slate-900 mb-3">
+          در حال پردازش پرداخت...
+        </h1>
+        <p className="text-slate-600">لطفاً چند لحظه صبر کنید.</p>
       </div>
     </div>
-  );
-}
-
-export default function PostPaymentPage() {
-  return (
-    <Suspense fallback={<div className="text-center py-10">در حال بارگذاری...</div>}>
-      <PostPaymentContent />
-    </Suspense> 
   );
 }
