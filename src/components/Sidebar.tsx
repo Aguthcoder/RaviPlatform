@@ -26,9 +26,13 @@ export default function Sidebar({ isMobile = false }: SidebarProps) {
   ];
 
   return (
-    <aside className={`w-72 bg-[#111827] text-white ${isMobile ? 'flex' : 'hidden md:flex'} flex-col h-full shrink-0 border-l border-slate-800 overflow-y-auto font-sans`}>
+    <aside 
+      className={`w-full h-full bg-[#111827] text-white flex flex-col border-l border-slate-800 overflow-y-auto font-sans ${
+        isMobile ? '' : 'hidden lg:flex'
+      }`}
+    >
       {/* هدر سایدبار با لینک به صفحه اصلی */}
-      <div className="p-6 border-b border-slate-800">
+      <div className="p-6 border-b border-slate-800 shrink-0">
         <Link href="/" className="flex items-center gap-3 group">
           {/* لوگو با انیمیشن هاور */}
           <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-amber-400 rounded-xl flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-all duration-300">
@@ -47,7 +51,7 @@ export default function Sidebar({ isMobile = false }: SidebarProps) {
       </div>
 
       {/* منوی اصلی */}
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
         {/* گزینه بازگشت به صفحه اصلی - بدون آیکون */}
         {!isHomePage && (
           <Link
