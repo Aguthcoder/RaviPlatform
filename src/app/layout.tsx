@@ -2,17 +2,15 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/context/AppContext";
-import ClientShell from "@/components/ClientShell";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic", "latin"],
-  variable: "--font-vazirmatn",
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
-  title: "راوی | پلتفرم هوشمند هم‌نشینی",
-  description: "با هوش مصنوعی هم‌نشین خود را پیدا کنید",
+  title: "راوی - پلتفرم هوشمند رویداد",
+  description: "پلتفرم راوی با استفاده از الگوریتم‌های هوش مصنوعی و تست‌های روان‌شناسی، افراد را با بهترین هم‌نشین‌های خود متصل می‌کند.",
 };
 
 export default function RootLayout({
@@ -22,11 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body
-        className={`${vazirmatn.variable} antialiased bg-white text-slate-900 font-sans`}
-      >
+      <body className={`${vazirmatn.className} antialiased`}>
         <AppProvider>
-          <ClientShell>{children}</ClientShell>
+          {children}
         </AppProvider>
       </body>
     </html>
