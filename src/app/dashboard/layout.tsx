@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Sidebar from "@/components/Sidebar";
 import { Menu, X } from "lucide-react";
+import Sidebar from "@/components/Sidebar";
 
 export default function DashboardLayout({
   children,
@@ -29,26 +29,25 @@ export default function DashboardLayout({
       {/* پس‌زمینه تیره موبایل */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-[100] lg:hidden"
+          className="fixed inset-0 bg-black/60 z-[998] lg:hidden"
           onClick={closeMobileMenu}
         />
       )}
 
       {/* سایدبار موبایل */}
       <div
-        className={`fixed top-0 right-0 bottom-0 w-72 bg-[#111827] z-[101] lg:hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 bottom-0 w-72 z-[999] lg:hidden transition-transform duration-300 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* دکمه بستن */}
         <button
           onClick={closeMobileMenu}
-          className="absolute top-4 left-4 z-[102] text-white hover:text-orange-500 transition-colors bg-slate-800/80 hover:bg-slate-700 rounded-full p-2.5 shadow-lg"
-          aria-label="بستن منو"
+          className="absolute top-4 left-4 z-[1000] bg-slate-700 hover:bg-slate-600 text-white rounded-full p-2"
         >
           <X size={20} />
         </button>
-        
+
         {/* Sidebar Component */}
         <Sidebar isMobile={true} onClose={closeMobileMenu} />
       </div>
@@ -61,11 +60,9 @@ export default function DashboardLayout({
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="text-slate-600 hover:text-slate-900 transition-colors p-2 -ml-2"
-              aria-label="باز کردن منو"
             >
               <Menu size={24} />
             </button>
-            {/* لینک اسم راوی به صفحه اصلی */}
             {!isHomePage && (
               <Link href="/" className="flex items-center gap-2 group">
                 <span className="font-black text-xl text-slate-900 group-hover:text-orange-600 transition-colors">
@@ -84,7 +81,6 @@ export default function DashboardLayout({
 
         {/* محتوای اسکرول */}
         <div className="flex-1 overflow-y-auto p-4 lg:p-8">
-          {/* دکمه بازگشت به صفحه اصلی در موبایل */}
           {!isHomePage && (
             <div className="lg:hidden mb-4">
               <Link
