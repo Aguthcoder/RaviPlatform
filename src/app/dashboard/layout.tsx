@@ -43,7 +43,7 @@ export default function DashboardLayout({
           <X size={24} />
         </button>
         <div className="pt-16">
-          <Sidebar />
+          <Sidebar isMobile={true} />
         </div>
       </div>
 
