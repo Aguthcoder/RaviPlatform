@@ -8,7 +8,7 @@ type State = {
   isProfileComplete: boolean;
   isTestTaken: boolean;
   userCity: string | null;
-  paymentSuccess: boolean; // اضافه شده
+  paymentSuccess: boolean;
 };
 
 // تعریف Action Types
@@ -18,7 +18,7 @@ type Action =
   | { type: "COMPLETE_PROFILE" }
   | { type: "TAKE_TEST" }
   | { type: "SET_CITY"; payload: string | null }
-  | { type: "SET_PAYMENT_SUCCESS"; payload: boolean } // اضافه شده
+  | { type: "SET_PAYMENT_SUCCESS"; payload: boolean }
   | { type: "LOAD_STATE"; payload: Partial<State> };
 
 // Initial State
@@ -27,7 +27,7 @@ const initialState: State = {
   isProfileComplete: false,
   isTestTaken: false,
   userCity: null,
-  paymentSuccess: false, // اضافه شده
+  paymentSuccess: false,
 };
 
 // Reducer Function
