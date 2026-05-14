@@ -2,6 +2,16 @@
 
 import React, { createContext, useContext, useReducer, useEffect, ReactNode, Dispatch } from "react";
 
+// تعریف تایپ نتایج تست
+export type TestResultEntry = {
+  testId: string;
+  testName: string;
+  answers: Record<string, string>;
+  scores: Record<string, number>;
+  tags: string[];
+  completedAt: string;
+};
+
 // تعریف State Type
 type State = {
   isLoggedIn: boolean;
@@ -9,6 +19,9 @@ type State = {
   isTestTaken: boolean;
   userCity: string | null;
   paymentSuccess: boolean;
+  testResults: TestResultEntry[];
+  userInterests: string[];
+  userIssues: string[];
 };
 
 // تعریف Action Types
@@ -19,6 +32,9 @@ type Action =
   | { type: "TAKE_TEST" }
   | { type: "SET_CITY"; payload: string | null }
   | { type: "SET_PAYMENT_SUCCESS"; payload: boolean }
+  | { type: "SAVE_TEST_RESULT"; payload: TestResultEntry }
+  | { type: "SET_USER_INTERESTS"; payload: string[] }
+  | { type: "SET_USER_ISSUES"; payload: string[] }
   | { type: "LOAD_STATE"; payload: Partial<State> };
 
 // Initial State
@@ -28,6 +44,9 @@ const initialState: State = {
   isTestTaken: false,
   userCity: null,
   paymentSuccess: false,
+  testResults: [],
+  userInterests: [],
+  userIssues: [],
 };
 
 // Reducer Function
@@ -47,6 +66,9 @@ function appReducer(state: State, action: Action): State {
         isTestTaken: false,
         userCity: null,
         paymentSuccess: false,
+        testResults: [],
+        userInterests: [],
+        userIssues: [],
       };
     
     case "COMPLETE_PROFILE":
@@ -71,6 +93,24 @@ function appReducer(state: State, action: Action): State {
       return {
         ...state,
         paymentSuccess: action.payload,
+      };
+
+    case "SAVE_TEST_RESULT":
+      return {
+        ...state,
+        testResults: [...state.testResults.filter(t => t.testId !== action.payload.testId), action.payload],
+      };
+
+    case "SET_USER_INTERESTS":
+      return {
+        ...state,
+        userInterests: action.payload,
+      };
+
+    case "SET_USER_ISSUES":
+      return {
+        ...state,
+        userIssues: action.payload,
       };
     
     case "LOAD_STATE":
@@ -142,5 +182,8 @@ export const appActions = {
   takeTest: () => ({ type: "TAKE_TEST" as const }),
   setCity: (city: string | null) => ({ type: "SET_CITY" as const, payload: city }),
   setPaymentSuccess: (success: boolean) => ({ type: "SET_PAYMENT_SUCCESS" as const, payload: success }),
+  saveTestResult: (result: TestResultEntry) => ({ type: "SAVE_TEST_RESULT" as const, payload: result }),
+  setUserInterests: (interests: string[]) => ({ type: "SET_USER_INTERESTS" as const, payload: interests }),
+  setUserIssues: (issues: string[]) => ({ type: "SET_USER_ISSUES" as const, payload: issues }),
   loadState: (state: Partial<State>) => ({ type: "LOAD_STATE" as const, payload: state }),
 };
